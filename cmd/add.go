@@ -11,14 +11,20 @@ import (
 	"github.com/spf13/cobra"
 )
 
+func addRun(cmd *cobra.Command, args []string){
+	items := []todo.Item{}
+	for _, x := range args {
+		items = append(items, x)
+		fmt.Println(x)
+	}
+
+}
 // addCmd represents the add command
 var addCmd = &cobra.Command{
 	Use:   "add",
 	Short: "this allows you to add to new items to your todo list!",
 	Long: `add your todo item by running doit add <item>`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("add called")
-	},
+	Run: addRun,
 }
 
 func init() {
