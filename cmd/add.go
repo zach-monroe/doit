@@ -14,9 +14,10 @@ import (
 func addRun(cmd *cobra.Command, args []string){
 	items := []todo.Item{}
 	for _, x := range args {
-		items = append(items, x)
-		fmt.Println(x)
+		items = append(items, todo.Item{Text:x})
+		fmt.Println(items)
 	}
+
 
 }
 // addCmd represents the add command
