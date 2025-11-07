@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"github.com/zach-monroe/doit/todo"
 	"github.com/spf13/cobra"
 
@@ -18,7 +19,11 @@ var lsCmd = &cobra.Command{
 	Short: "To list all of your current 'todos' simply give it an 'ls'!",
 	Long: `I said what I said`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("ls called")
+		items, err := todo.ReadItems("/Users/zach/.doit.json")
+		if err != nil {
+			log.Printf("%v", err)
+		}
+		fmt.Println(items)
 	},
 }
 
