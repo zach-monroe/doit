@@ -12,7 +12,9 @@ type Item struct {
 func SaveItems(filename string, items []Item) error {
 	a, err := os.ReadFile(filename)
 	if err != nil {
-		return err
+		if !os.IsNotExist(err) {
+			return err
+		}
 	}
 	if a != nil {
 		var orig_items []Item

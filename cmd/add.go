@@ -13,12 +13,13 @@ import (
 
 func addRun(cmd *cobra.Command, args []string) {
 	items := []todo.Item{}
+
 	for _, x := range args {
 		items = append(items, todo.Item{Text: x})
 	}
 	err := todo.SaveItems(dataFile, items)
 	if err != nil {
-		fmt.Errorf("%v", err)
+		fmt.Printf("%v", err)
 	}
 
 }
