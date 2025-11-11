@@ -1,18 +1,18 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
-	"os"
 	"fmt"
-	"github.com/spf13/cobra"
+	"os"
+
 	"github.com/mitchellh/go-homedir"
+	"github.com/spf13/cobra"
 )
 
+var dataFile string
 
-var datFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "doit",
@@ -44,15 +44,12 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	home, err := homedir.Dir();
-		if err != nil {
-			log.Println("Unable to detect home directory. Please set data file using --datafile")
-		}
+	home, err := homedir.Dir()
+	if err != nil {
+		fmt.Println("Unable to detect home directory. Please set data file using --datafile")
 	}
 
 	rootCmd.PersistentFlags().StringVar(&dataFile, "datafile", home+string(os.PathSeparator)+".doit.json", "data file to store todos")
-	
+
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-

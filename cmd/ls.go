@@ -1,25 +1,23 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
 	"log"
-	"github.com/zach-monroe/doit/todo"
+
 	"github.com/spf13/cobra"
-
-
+	"github.com/zach-monroe/doit/todo"
 )
 
 // lsCmd represents the ls command
 var lsCmd = &cobra.Command{
 	Use:   "ls",
 	Short: "To list all of your current 'todos' simply give it an 'ls'!",
-	Long: `I said what I said`,
+	Long:  `I said what I said`,
 	Run: func(cmd *cobra.Command, args []string) {
-		items, err := todo.ReadItems("/Users/zach/.doit.json")
+		items, err := todo.ReadItems(dataFile)
 		if err != nil {
 			log.Printf("%v", err)
 		}

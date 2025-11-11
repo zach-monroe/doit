@@ -1,34 +1,34 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
+
 	"github.com/zach-monroe/doit/todo"
 
 	"github.com/spf13/cobra"
 )
 
-func addRun(cmd *cobra.Command, args []string){
+func addRun(cmd *cobra.Command, args []string) {
 	items := []todo.Item{}
 	for _, x := range args {
-		items = append(items, todo.Item{Text:x})
+		items = append(items, todo.Item{Text: x})
 	}
-		err := todo.SaveItems("/Users/zach/.doit.json", items)
+	err := todo.SaveItems(dataFile, items)
 	if err != nil {
 		fmt.Errorf("%v", err)
 	}
 
-
 }
+
 // addCmd represents the add command
 var addCmd = &cobra.Command{
 	Use:   "add",
 	Short: "this allows you to add to new items to your todo list!",
-	Long: `add your todo item by running doit add <item>`,
-	Run: addRun,
+	Long:  `add your todo item by running doit add <item>`,
+	Run:   addRun,
 }
 
 func init() {
